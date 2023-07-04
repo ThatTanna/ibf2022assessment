@@ -1,0 +1,16 @@
+<h1>My Bookstore</h1>
+<div class="spacing">
+    <span class="spacing">
+        <button *ngFor="let alpha of ALPHABETS" class="spacing" mat-raised-button color="primary" (click)="listBooks(alpha)">
+            {{ alpha }}
+        </button>
+    </span>
+</div>
+
+<div class="spacing">
+    <span class="spacing" >
+        <button *ngFor="let num of NUMBERS" mat-raised-button color="secondary" (click)="listBooks(num)">
+            {{ num }}
+        </button>
+    </span>
+</div>
