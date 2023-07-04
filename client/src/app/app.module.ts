@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiModule } from './ui/ui.module';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { HttpClientModule, HttpParams } from '@angular/common/http';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BookListComponent
+    BookListComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,

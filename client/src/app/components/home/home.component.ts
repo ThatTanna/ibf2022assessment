@@ -19,16 +19,20 @@ export class HomeComponent {
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
   ]
 
-  searchValue!: string;
-  limit: number = 10;
-  offset: number = 0;
+  constructor(private router: Router, private bookService: BookService) { }
 
-  constructor(private bookService: BookService, private router: Router) { }
+  listBooks(searchValue: string) {
+    console.log(searchValue);
+    this.router.navigate(['/book-list'],
+      {
+        queryParams: { searchValue }
+      });
+  }
 
-  listBooks(value: string) {
-    console.log(value);
-    this.bookService.getBooksBy(value);
-    this.router.navigate(['/book-list']);
+  hello() {
+    console.log("hello!!");
+    this.bookService.hello;
+    this.router.navigate(['/book-details'])
   }
 
 }

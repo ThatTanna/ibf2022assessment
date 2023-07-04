@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Book } from './models/Book.model';
 
 const url = "/api/books";
 
@@ -11,13 +13,23 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  // searchValue: string = "";
-  currentPage: number = 2;
+  getBooksBy(searchValue: string, limit: number, offset: number): Observable<Book[]> {
+    let params = new HttpParams()
+      .set('searchValue', searchValue)
+      .set('limit', limit)
+      .set('offset', offset)
+    console.log(url);
+    console.log("params: " + params);
+    console.log("searchValue: " + searchValue);
+    console.log("limit:" + limit);
+    return this.http.get<Book[]>(url, { params });
+  }
 
-  getBooksBy(searchValue: string) {
-    const query = `SELECT * FROM goodreads WHERE title LIKE '${searchValue}%' LIMIT '${(this.currentPage - 1) * 10}' `;
-    console.log(query);
-    console.log(searchValue);
-    return this.http.get<any[]>(url, {params: {query}});
+  hello() {
+    return this.http.get<any>("/api/books/hello");
+  }
+
+  getAllBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${url}/all`);
   }
 }
